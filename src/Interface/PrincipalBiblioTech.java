@@ -51,6 +51,11 @@ public class PrincipalBiblioTech extends javax.swing.JFrame {
 
         btn_prestamos.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btn_prestamos.setText("Préstamos");
+        btn_prestamos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_prestamosActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jButton1.setText("Registro de Estudiantes");
@@ -90,12 +95,18 @@ public class PrincipalBiblioTech extends javax.swing.JFrame {
     private void btn_regMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regMatActionPerformed
         RegistroDeMaterial regMat = new RegistroDeMaterial();
         regMat.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btn_regMatActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         RegistroDeEstudiantes re = new  RegistroDeEstudiantes();
         re.setVisible(true);
+         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prestamosActionPerformed
+       this.setVisible(false);
+    }//GEN-LAST:event_btn_prestamosActionPerformed
 
     /**
      * @param args the command line arguments

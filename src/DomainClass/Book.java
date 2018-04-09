@@ -2,6 +2,8 @@
 package DomainClass;
 
 import java.io.Serializable;
+import static java.lang.Math.random;
+import java.util.Random;
 
 
 public class Book implements Serializable {
@@ -11,6 +13,8 @@ public class Book implements Serializable {
     private int year;
     private String category;
     private String type;
+    private String ISBN;
+    private Random random= new Random();
 
     public Book() {
     }
@@ -23,6 +27,7 @@ public class Book implements Serializable {
         this.year = year;
         this.category = category;
         this.type = type;
+        this.ISBN= "ISBN-"+String.valueOf(getAleatorios(9999));
     }
 
     public String getName() {
@@ -73,9 +78,22 @@ public class Book implements Serializable {
         this.type = type;
     }
 
+    public String getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Book{" + "name=" + name + ", editorial=" + editorial + ", autor=" + autor + ", year=" + year + ", category=" + category + ", type=" + type + '}';
+    }
+       public int getAleatorios (int cota){
+        return random.nextInt(cota)+1;
     }
      
     

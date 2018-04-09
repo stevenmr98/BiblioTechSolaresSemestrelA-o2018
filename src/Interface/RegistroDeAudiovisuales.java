@@ -42,6 +42,7 @@ public class RegistroDeAudiovisuales extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro");
         setBackground(new java.awt.Color(204, 0, 102));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -157,9 +158,7 @@ public class RegistroDeAudiovisuales extends javax.swing.JFrame {
                                         .addGap(110, 110, 110)
                                         .addComponent(lblSuccess, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(59, 59, 59)
                                         .addComponent(btnAdd))))))
@@ -224,38 +223,38 @@ public class RegistroDeAudiovisuales extends javax.swing.JFrame {
     }//GEN-LAST:event_tflYearActionPerformed
 
     private void comboTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTypeActionPerformed
-//       if(comboType.getSelectedItem().equals("CD's"))
-//            Type = "CD";
-//       if(comboType.getSelectedItem().equals("DVD"))
-//            Type = "DVD";
-//       if(comboType.getSelectedItem().equals("Grabadora"))
-//            Type = "Grabadora";
-//       if(comboType.getSelectedItem().equals("Parlante"))
-//            Type = "Parlante";
-//       if(comboType.getSelectedItem().equals("Proyector"))
-//            Type = "Proyector";
-//       if(comboType.getSelectedItem().equals("Laptop"))
-//            Type = "Laptop";
+       if(comboType.getSelectedItem().equals("CD's"))
+            Type = "CD";
+       if(comboType.getSelectedItem().equals("DVD"))
+            Type = "DVD";
+       if(comboType.getSelectedItem().equals("Grabadora"))
+            Type = "Grabadora";
+       if(comboType.getSelectedItem().equals("Parlante"))
+            Type = "Parlante";
+       if(comboType.getSelectedItem().equals("Proyector"))
+            Type = "Proyector";
+       if(comboType.getSelectedItem().equals("Laptop"))
+            Type = "Laptop";
         
     }//GEN-LAST:event_comboTypeActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         //Renorna al menu principal
-        PrincipalBiblioTech pBiblio = new PrincipalBiblioTech();
-        pBiblio.setVisible(true);
+        RegistroDeMaterial rm = new RegistroDeMaterial();
+        rm.setVisible(true);
         this.setVisible(false);
                                  
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void comboConditionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboConditionActionPerformed
-       //
-//        if(comboCondition.getSelectedItem().equals("Excelente"))
-//            Type = "Excelente";
-//        if(comboCondition.getSelectedItem().equals("Bueno"))
-//            Type = "Bueno";
-//         if(comboCondition.getSelectedItem().equals("Regular"))
-//            Type = "Regular";
-//  
+       
+        if(comboCondition.getSelectedItem().equals("Excelente"))
+            Type = "Excelente";
+        if(comboCondition.getSelectedItem().equals("Bueno"))
+            Type = "Bueno";
+         if(comboCondition.getSelectedItem().equals("Regular"))
+            Type = "Regular";
+  
     }//GEN-LAST:event_comboConditionActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed

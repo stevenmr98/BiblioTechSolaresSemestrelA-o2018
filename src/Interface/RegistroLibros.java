@@ -15,7 +15,7 @@ public class RegistroLibros extends javax.swing.JFrame {
 
     AddBook addB = new AddBook("./Books.dat");
     Book myBook = new Book();
-    String Type = "", Category="";
+    String Type = "Fisico", Category="Cuentos";
     
     public RegistroLibros() {
         initComponents();
@@ -47,6 +47,7 @@ public class RegistroLibros extends javax.swing.JFrame {
         lbl_success = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
 
@@ -58,6 +59,7 @@ public class RegistroLibros extends javax.swing.JFrame {
                 cmb_typeActionPerformed(evt);
             }
         });
+        lbl_success.setVisible(true);
 
         lbl_title.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lbl_title.setText("Registre su Libro y sus Características");
@@ -68,17 +70,23 @@ public class RegistroLibros extends javax.swing.JFrame {
         lbl_name.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lbl_name.setText("Nombre:");
 
+        tfd_name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfd_nameActionPerformed(evt);
+            }
+        });
+
         lbl_category.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lbl_category.setText("Categoría:");
 
         cmb_category.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         cmb_category.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cuentos", "Informática", "Agronomía", "Educación" }));
-        cmb_type.setVisible(false);
         cmb_category.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_categoryActionPerformed(evt);
             }
         });
+        cmb_type.setVisible(true);
 
         lbl_year.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lbl_year.setText("Año:");
@@ -86,10 +94,28 @@ public class RegistroLibros extends javax.swing.JFrame {
         lbl_editorial.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lbl_editorial.setText("Editorial:");
 
+        tfd_editorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfd_editorialActionPerformed(evt);
+            }
+        });
+
+        tfd_year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfd_yearActionPerformed(evt);
+            }
+        });
+
         lbl_regBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/RegLibro.png"))); // NOI18N
 
         lbl_autor.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lbl_autor.setText("Autor:");
+
+        tfd_autor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfd_autorActionPerformed(evt);
+            }
+        });
 
         btn_addBook.setFont(new java.awt.Font("Ebrima", 0, 24)); // NOI18N
         btn_addBook.setText("Agregar");
@@ -139,7 +165,7 @@ public class RegistroLibros extends javax.swing.JFrame {
                                 .addContainerGap(24, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lbl_regBook, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(19, 19, 19)
                                 .addComponent(btn_addBook)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -195,6 +221,8 @@ public class RegistroLibros extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        lbl_success.setVisible(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,28 +256,50 @@ public class RegistroLibros extends javax.swing.JFrame {
     private void cmb_typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_typeActionPerformed
         if(cmb_type.getSelectedItem().equals("Fisico"))
             Type = "Fisico";
+        lbl_success.setVisible(false);
         if(cmb_type.getSelectedItem().equals("Digital"))
             Type = "Digital";
+        lbl_success.setVisible(false);
             
     }//GEN-LAST:event_cmb_typeActionPerformed
 
     private void cmb_categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_categoryActionPerformed
         if(cmb_category.getSelectedItem().equals("Cuentos"))
             Category = "Cuentos";
+        lbl_success.setVisible(false);
         if(cmb_category.getSelectedItem().equals("Informática"))
             Category = "Informática";
+        lbl_success.setVisible(false);
         if(cmb_category.getSelectedItem().equals("Agronomía"))
             Category = "Agronomía";
+        lbl_success.setVisible(false);
         if(cmb_category.getSelectedItem().equals("Educación"))
             Category = "Educación";
+        lbl_success.setVisible(false);
 
     }//GEN-LAST:event_cmb_categoryActionPerformed
 
     private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
-        PrincipalBiblioTech pBiblio = new PrincipalBiblioTech();
-        pBiblio.setVisible(true);
+        RegistroDeMaterial rm= new RegistroDeMaterial();
+        rm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_exitActionPerformed
+
+    private void tfd_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfd_nameActionPerformed
+       lbl_success.setVisible(false);
+    }//GEN-LAST:event_tfd_nameActionPerformed
+
+    private void tfd_yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfd_yearActionPerformed
+        lbl_success.setVisible(false);
+    }//GEN-LAST:event_tfd_yearActionPerformed
+
+    private void tfd_editorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfd_editorialActionPerformed
+      lbl_success.setVisible(false);
+    }//GEN-LAST:event_tfd_editorialActionPerformed
+
+    private void tfd_autorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfd_autorActionPerformed
+        lbl_success.setVisible(false);
+    }//GEN-LAST:event_tfd_autorActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,5 +1,4 @@
-
-package DomainClass;
+package domain;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,36 +6,37 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class AddAudiovisual {
-      
+public class AddBook {
+    
     private String path;
+    private int regsQuantity;//number of registers on the file
+    private int regSize;//size of the register
 
-   
-    public AddAudiovisual(String path_) {
+    public AddBook(String path_) {
         super();
         
         //ruta del archivo
         this.path = path_;
-    }
+        
+        }
 
     
     /**
      * Guarda en archivo un objeto de tipo Person
-     * @param audiovisual_
-     * @throws IOException
-     * @throws ClassNotFoundException
      */
-    public void serialize(Audiovisual audiovisual_) throws IOException, ClassNotFoundException{
+    
+    //Metodo que serializa un objeto de tipo Book
+    public void serialize(Book myBook) throws IOException, ClassNotFoundException{
         
         //instancia de file
         File myFile = new File(path);
         
         //lista que se obtiene y se guarda en archivo
-        List<Audiovisual> audioList = new ArrayList<Audiovisual>();
+        List<Book> BookList = new ArrayList<Book>();
         
         //si el archivo existe, recupero la lista
         if(myFile.exists()){
@@ -44,16 +44,16 @@ public class AddAudiovisual {
             Object aux = objectInput.readObject();
             
             //casting a lista
-            audioList = (List<Audiovisual>)aux;
+            BookList = (List<Book>)aux;
             objectInput.close();  
         }
         
         //agrego la persona a la lista
-        audioList.add(audiovisual_);
+        BookList.add(myBook);
         
         //escribo el objeto lista (que contiene objetos de tipo Person) en archivo
         ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(myFile));
-        output.writeUnshared(audioList);
+        output.writeUnshared(BookList);
         
         //cierro el archivo
         output.close();
@@ -61,18 +61,20 @@ public class AddAudiovisual {
     
     /**
      * Busca en el archivo la persona y la retorna como Objeto Person
-     * @param name_ _ nombre de la persona que se busca en el archivo
+     * @param name_ nombre de la persona que se busca en el archivo
      * @return objeto de tipo Person, con los datos de la persona que se busca
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public Audiovisual getAudio(String name_) throws IOException, ClassNotFoundException {
+    
+    //Metodo que lee un objeto de tipo libro
+    public Book getBook(int i) throws IOException, ClassNotFoundException {
         
         //instancia de file
         File myFile = new File(path);
         
         //lista que voy a recorrer para buscar a una persona
-        List<Audiovisual> audioList = new ArrayList<Audiovisual>();
+        List<Book> booksList = new ArrayList<Book>();
         
         //si el archivo existe entonces recupero a la persona
         if(myFile.exists()){
@@ -81,35 +83,12 @@ public class AddAudiovisual {
             Object aux = objectInput.readObject();
             
             //casting del objeto
-            audioList = (List<Audiovisual>)aux;
+            booksList = (List<Book>)aux;
             objectInput.close();  
         }
-        
-        //mi instancia a retornar
-        Audiovisual myAudio = new Audiovisual();
-        
-        //recorro la lista en busca de la persona que me interesa
-        for(int i = 0; i < audioList.size(); i++){
-            
-            //pregunta si es la persona
-            if(audioList.get(i).getType().equalsIgnoreCase(name_)){
-                //
-                myAudio = audioList.get(i);
-                
-                //esta linea me hace salir del ciclo
-                break;
-            }
-        }
-        
-        //retorna la persona ya sea con datos nulos o con la persona buscada
-        return myAudio;
+        Book myBook = new Book();
+        myBook = booksList.get(i);
+        return myBook;
     }
     
-    
 }
-
-    
-
- 
-    
-   

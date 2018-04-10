@@ -1,33 +1,33 @@
-package DomainClass;
+package domain;
 
-import DomainClass.Book;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddBook {
+public class AddStudent {
 
-    /**
-     *
-     * @author Administrator
-     */
     private String path;
 
-    public AddBook(String path_) {
+    public AddStudent(String path_) {
         super();
 
         //ruta del archivo
         this.path = path_;
     }
 
-   
-    public void serialize(Book book_) throws IOException, ClassNotFoundException {
+    //Metodo que serializa un objeto de tipo student
+    public void serialize(Student myStudent) throws IOException, ClassNotFoundException {
 
         //instancia de file
         File myFile = new File(path);
 
         //lista que se obtiene y se guarda en archivo
-        List<Book> bookList = new ArrayList<Book>();
+        List<Student> StudentList = new ArrayList<Student>();
 
         //si el archivo existe, recupero la lista
         if (myFile.exists()) {
@@ -35,16 +35,16 @@ public class AddBook {
             Object aux = objectInput.readObject();
 
             //casting a lista
-            bookList = (List<Book>) aux;
+            StudentList = (List<Student>) aux;
             objectInput.close();
         }
 
         //agrego la persona a la lista
-        bookList.add(book_);
+        StudentList.add(myStudent);
 
         //escribo el objeto lista (que contiene objetos de tipo Person) en archivo
         ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(myFile));
-        output.writeUnshared(bookList);
+        output.writeUnshared(StudentList);
 
         //cierro el archivo
         output.close();
@@ -58,13 +58,15 @@ public class AddBook {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public Book getBook(int i) throws IOException, ClassNotFoundException {
+    
+    //metodo que lee un objeto de tipo student
+    public Student getStudent(int i) throws IOException, ClassNotFoundException {
 
         //instancia de file
         File myFile = new File(path);
 
         //lista que voy a recorrer para buscar a una persona
-        List<Book> bookList = new ArrayList<Book>();
+        List<Student> studentList = new ArrayList<Student>();
 
         //si el archivo existe entonces recupero a la persona
         if (myFile.exists()) {
@@ -73,16 +75,17 @@ public class AddBook {
             Object aux = objectInput.readObject();
 
             //casting del objeto
-            bookList = (List< Book>) aux;
+            studentList = (List<Student>) aux;
             objectInput.close();
         }
 
         //mi instancia a retornar
-        Book myBook = new Book();
+        Student myStudent = new Student();
 
-        myBook = bookList.get(i);
+        myStudent = studentList.get(i);
 
-        return myBook;
+        //retorna la persona ya sea con datos nulos o con la persona buscada
+        return myStudent;
     }
 
 }

@@ -9,10 +9,13 @@ import java.util.logging.Logger;
 
 public class RegistroDeEstudiantes extends javax.swing.JFrame {
 
-    String Carreer = "";
+    //instancias
+    String Carreer = "Informática";
     
     public RegistroDeEstudiantes() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     
@@ -30,9 +33,10 @@ public class RegistroDeEstudiantes extends javax.swing.JFrame {
         lbl_carreer = new javax.swing.JLabel();
         lbl_success = new javax.swing.JLabel();
         lbl_student = new javax.swing.JLabel();
+        lbl_año = new javax.swing.JLabel();
+        tfd_año = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -93,6 +97,21 @@ public class RegistroDeEstudiantes extends javax.swing.JFrame {
         lbl_student.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/student.png"))); // NOI18N
         lbl_student.setText("jLabel3");
 
+        lbl_año.setFont(new java.awt.Font("Pristina", 1, 24)); // NOI18N
+        lbl_año.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_año.setText("Año de Ingreso:");
+
+        tfd_año.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfd_añoFocusGained(evt);
+            }
+        });
+        tfd_año.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfd_añoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -104,47 +123,56 @@ public class RegistroDeEstudiantes extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lbl_carreer)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmb_carreer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lbl_name)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfd_name, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbl_success)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btn_exit)
-                                .addGap(24, 24, 24)
+                                .addGap(18, 18, 18)
                                 .addComponent(btn_add))
-                            .addComponent(lbl_success)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lbl_año)
+                                    .addGap(7, 7, 7)
+                                    .addComponent(tfd_año))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lbl_carreer)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(cmb_carreer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lbl_title)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfd_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_name))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmb_carreer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_carreer))
-                        .addGap(18, 18, 18)
-                        .addComponent(lbl_success)
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_exit)
-                            .addComponent(btn_add)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbl_title)
-                        .addGap(28, 28, 28)
-                        .addComponent(lbl_student)))
+                .addContainerGap()
+                .addComponent(lbl_title)
+                .addGap(28, 28, 28)
+                .addComponent(lbl_student)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfd_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_name))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmb_carreer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_carreer))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_año)
+                    .addComponent(tfd_año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_success)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_exit)
+                    .addComponent(btn_add))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -164,11 +192,12 @@ public class RegistroDeEstudiantes extends javax.swing.JFrame {
 
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addActionPerformed
         AddStudent addS = new AddStudent("./Students.dat");
-        Student myStudent = new Student(tfd_name.getText(), Carreer);
+        Student myStudent = new Student(tfd_name.getText(), Carreer,Integer.parseInt(tfd_año.getText()));
         try {
             addS.serialize(myStudent);
             lbl_success.setVisible(true);
             tfd_name.setText("");
+            tfd_año.setText("");
         } catch (IOException ex) {
             Logger.getLogger(RegistroDeEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -193,12 +222,20 @@ public class RegistroDeEstudiantes extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_exitActionPerformed
 
     private void tfd_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfd_nameActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_tfd_nameActionPerformed
 
     private void tfd_nameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfd_nameFocusGained
         lbl_success.setVisible(false);
     }//GEN-LAST:event_tfd_nameFocusGained
+
+    private void tfd_añoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfd_añoActionPerformed
+        
+    }//GEN-LAST:event_tfd_añoActionPerformed
+
+    private void tfd_añoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfd_añoFocusGained
+        lbl_success.setVisible(false);
+    }//GEN-LAST:event_tfd_añoFocusGained
 
     /**
      * @param args the command line arguments
@@ -240,11 +277,13 @@ public class RegistroDeEstudiantes extends javax.swing.JFrame {
     private javax.swing.JButton btn_exit;
     private javax.swing.JComboBox<String> cmb_carreer;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_año;
     private javax.swing.JLabel lbl_carreer;
     private javax.swing.JLabel lbl_name;
     private javax.swing.JLabel lbl_student;
     private javax.swing.JLabel lbl_success;
     private javax.swing.JLabel lbl_title;
+    private javax.swing.JTextField tfd_año;
     private javax.swing.JTextField tfd_name;
     // End of variables declaration//GEN-END:variables
 }

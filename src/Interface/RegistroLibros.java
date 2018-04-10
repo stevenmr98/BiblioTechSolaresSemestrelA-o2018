@@ -5,23 +5,26 @@
  */
 package Interface;
 
-import DomainClass.AddBook;
-import DomainClass.Book;
+import domain.AddBook;
+import domain.Book;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RegistroLibros extends javax.swing.JFrame {
 
+    //Instancias
     AddBook addB = new AddBook("./Books.dat");
     Book myBook = new Book();
-    String Type = "Fisico", Category="Cuentos";
+    
+    String Type = "Físico", Category="Cuentos";
     
     public RegistroLibros() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
-
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -46,8 +49,7 @@ public class RegistroLibros extends javax.swing.JFrame {
         btn_exit = new javax.swing.JButton();
         lbl_success = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 0));
 
@@ -59,7 +61,6 @@ public class RegistroLibros extends javax.swing.JFrame {
                 cmb_typeActionPerformed(evt);
             }
         });
-        lbl_success.setVisible(true);
 
         lbl_title.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lbl_title.setText("Registre su Libro y sus Características");
@@ -70,9 +71,9 @@ public class RegistroLibros extends javax.swing.JFrame {
         lbl_name.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lbl_name.setText("Nombre:");
 
-        tfd_name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfd_nameActionPerformed(evt);
+        tfd_name.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfd_nameFocusGained(evt);
             }
         });
 
@@ -86,7 +87,6 @@ public class RegistroLibros extends javax.swing.JFrame {
                 cmb_categoryActionPerformed(evt);
             }
         });
-        cmb_type.setVisible(true);
 
         lbl_year.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lbl_year.setText("Año:");
@@ -94,15 +94,15 @@ public class RegistroLibros extends javax.swing.JFrame {
         lbl_editorial.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lbl_editorial.setText("Editorial:");
 
-        tfd_editorial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfd_editorialActionPerformed(evt);
+        tfd_editorial.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfd_editorialFocusGained(evt);
             }
         });
 
-        tfd_year.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfd_yearActionPerformed(evt);
+        tfd_year.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfd_yearFocusGained(evt);
             }
         });
 
@@ -111,9 +111,9 @@ public class RegistroLibros extends javax.swing.JFrame {
         lbl_autor.setFont(new java.awt.Font("Dialog", 0, 22)); // NOI18N
         lbl_autor.setText("Autor:");
 
-        tfd_autor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfd_autorActionPerformed(evt);
+        tfd_autor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfd_autorFocusGained(evt);
             }
         });
 
@@ -147,11 +147,13 @@ public class RegistroLibros extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_exit)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lbl_editorial)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfd_editorial, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btn_exit))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmb_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfd_editorial, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -162,10 +164,10 @@ public class RegistroLibros extends javax.swing.JFrame {
                                 .addComponent(lbl_category)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cmb_category, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(24, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lbl_regBook, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btn_addBook)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -175,9 +177,7 @@ public class RegistroLibros extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lbl_type)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmb_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(59, 59, 59)
+                                .addGap(149, 149, 149)
                                 .addComponent(lbl_name)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfd_name, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,27 +211,25 @@ public class RegistroLibros extends javax.swing.JFrame {
                     .addComponent(tfd_autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_category)
                     .addComponent(cmb_category, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_regBook, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_addBook, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_exit, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_exit)
+                    .addComponent(lbl_regBook)
+                    .addComponent(btn_addBook))
+                .addGap(26, 26, 26)
                 .addComponent(lbl_success)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
-
-        lbl_success.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -254,52 +252,60 @@ public class RegistroLibros extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_addBookActionPerformed
 
     private void cmb_typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_typeActionPerformed
-        if(cmb_type.getSelectedItem().equals("Fisico"))
-            Type = "Fisico";
+        if(cmb_type.getSelectedItem().equals("Fisico")){
+        Type = "Fisico";
         lbl_success.setVisible(false);
-        if(cmb_type.getSelectedItem().equals("Digital"))
+        }
+            
+        if(cmb_type.getSelectedItem().equals("Digital")){
             Type = "Digital";
         lbl_success.setVisible(false);
+    }
             
     }//GEN-LAST:event_cmb_typeActionPerformed
 
     private void cmb_categoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_categoryActionPerformed
-        if(cmb_category.getSelectedItem().equals("Cuentos"))
+        if(cmb_category.getSelectedItem().equals("Cuentos")){
             Category = "Cuentos";
-        lbl_success.setVisible(false);
-        if(cmb_category.getSelectedItem().equals("Informática"))
+            lbl_success.setVisible(false);
+        }
+            
+        if(cmb_category.getSelectedItem().equals("Informática")){
             Category = "Informática";
-        lbl_success.setVisible(false);
-        if(cmb_category.getSelectedItem().equals("Agronomía"))
+            lbl_success.setVisible(false);
+        }
+        if(cmb_category.getSelectedItem().equals("Agronomía")){
             Category = "Agronomía";
-        lbl_success.setVisible(false);
-        if(cmb_category.getSelectedItem().equals("Educación"))
+            lbl_success.setVisible(false);
+        }
+        if(cmb_category.getSelectedItem().equals("Educación")){
             Category = "Educación";
-        lbl_success.setVisible(false);
+            lbl_success.setVisible(false);
+        }
 
     }//GEN-LAST:event_cmb_categoryActionPerformed
 
     private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
-        RegistroDeMaterial rm= new RegistroDeMaterial();
-        rm.setVisible(true);
+        RegistroDeMaterial regMat = new RegistroDeMaterial();
         this.setVisible(false);
+        regMat.setVisible(true);
     }//GEN-LAST:event_btn_exitActionPerformed
 
-    private void tfd_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfd_nameActionPerformed
-       lbl_success.setVisible(false);
-    }//GEN-LAST:event_tfd_nameActionPerformed
-
-    private void tfd_yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfd_yearActionPerformed
+    private void tfd_nameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfd_nameFocusGained
         lbl_success.setVisible(false);
-    }//GEN-LAST:event_tfd_yearActionPerformed
+    }//GEN-LAST:event_tfd_nameFocusGained
 
-    private void tfd_editorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfd_editorialActionPerformed
-      lbl_success.setVisible(false);
-    }//GEN-LAST:event_tfd_editorialActionPerformed
-
-    private void tfd_autorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfd_autorActionPerformed
+    private void tfd_yearFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfd_yearFocusGained
         lbl_success.setVisible(false);
-    }//GEN-LAST:event_tfd_autorActionPerformed
+    }//GEN-LAST:event_tfd_yearFocusGained
+
+    private void tfd_editorialFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfd_editorialFocusGained
+        lbl_success.setVisible(false);
+    }//GEN-LAST:event_tfd_editorialFocusGained
+
+    private void tfd_autorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfd_autorFocusGained
+        lbl_success.setVisible(false);
+    }//GEN-LAST:event_tfd_autorFocusGained
 
     /**
      * @param args the command line arguments

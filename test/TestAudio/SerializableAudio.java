@@ -1,8 +1,6 @@
 
 package TestAudio;
 
-import DomainClass.AddBook;
-import DomainClass.Book;
 import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -10,9 +8,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import DomainClass.AddAudiovisual;
-import DomainClass.Audiovisual;
-
+import domain.AddAudiovisual;
+import domain.AddBook;
+import domain.Audiovisual;
 
 public class SerializableAudio {
     
@@ -37,6 +35,7 @@ public class SerializableAudio {
 
       //@Test
     public void write() throws IOException, ClassNotFoundException{
+        
                  //instancias a guardar en el archivo
                  Audiovisual c= new Audiovisual("2500", "Sankey", "DVD", "Excelent", 1990);
                  Audiovisual c1= new Audiovisual("c45", "Hitachi", "televisor", "GOOD", 1990);
@@ -59,7 +58,7 @@ public class SerializableAudio {
          AddAudiovisual audioData = new AddAudiovisual("addAudio.dat");
 
          //lectura de la persona que se buscar
-         Audiovisual audioTemp = audioData.getAudio("televisor");
+       //  Audiovisual audioTemp = audioData.getAudio("televisor");
          
          //impresion en consola
          System.out.println(audioTemp.toString());

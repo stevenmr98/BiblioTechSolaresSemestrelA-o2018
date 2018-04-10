@@ -1,14 +1,14 @@
 
 package TestBook;
 
-import DomainClass.AddBook;
+import domain.AddBook;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import DomainClass.Book;
+import domain.Book;
 import java.io.IOException;
 
 /**
@@ -55,7 +55,7 @@ public class SerializableTest {
 //            
 //            }
     
-      //@Test
+      @Test
      public void readObject() throws IOException, ClassNotFoundException {
          
          //crea la instancia para la manipulacion de archivos serializables

@@ -2,6 +2,9 @@
 package Interface;
 
 import java.awt.BorderLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -24,7 +27,6 @@ public class PrincipalBiblioTech extends javax.swing.JFrame {
         Background.setBounds(0,0,uno.getIconWidth(),uno.getIconHeight());
          this.add(Background, BorderLayout.CENTER);
         this.setSize(Background.getWidth(), Background.getHeight());
-//        this.setLocationRelativeTo(null);﻿
     }
 
   
@@ -36,12 +38,13 @@ public class PrincipalBiblioTech extends javax.swing.JFrame {
 
         btn_regMat = new javax.swing.JButton();
         btn_prestamos = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btn_regStud = new javax.swing.JButton();
+        btn_listdat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 153));
 
-        btn_regMat.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        btn_regMat.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
         btn_regMat.setText("Registro de Material");
         btn_regMat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,7 +52,7 @@ public class PrincipalBiblioTech extends javax.swing.JFrame {
             }
         });
 
-        btn_prestamos.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        btn_prestamos.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
         btn_prestamos.setText("Préstamos");
         btn_prestamos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,11 +60,19 @@ public class PrincipalBiblioTech extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jButton1.setText("Registro de Estudiantes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_regStud.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
+        btn_regStud.setText("Registro de Estudiantes");
+        btn_regStud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_regStudActionPerformed(evt);
+            }
+        });
+
+        btn_listdat.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
+        btn_listdat.setText("Lista de Datos");
+        btn_listdat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listdatActionPerformed(evt);
             }
         });
 
@@ -70,22 +81,25 @@ public class PrincipalBiblioTech extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(btn_regMat)
-                .addGap(49, 49, 49)
+                .addGap(18, 18, 18)
                 .addComponent(btn_prestamos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(28, 28, 28))
+                .addGap(18, 18, 18)
+                .addComponent(btn_regStud)
+                .addGap(18, 18, 18)
+                .addComponent(btn_listdat)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(340, Short.MAX_VALUE)
+                .addContainerGap(345, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btn_regStud)
                     .addComponent(btn_prestamos)
-                    .addComponent(btn_regMat))
+                    .addComponent(btn_regMat)
+                    .addComponent(btn_listdat))
                 .addGap(153, 153, 153))
         );
 
@@ -98,14 +112,29 @@ public class PrincipalBiblioTech extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_regMatActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        RegistroDeEstudiantes re = new  RegistroDeEstudiantes();
-        re.setVisible(true);
-         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btn_regStudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regStudActionPerformed
+        RegistroDeEstudiantes regStud= new RegistroDeEstudiantes();
+        regStud.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_regStudActionPerformed
+
+    private void btn_listdatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listdatActionPerformed
+        ShowData show;
+        try {
+            show = new ShowData();
+            show.setVisible(true);
+        this.setVisible(false);
+        } catch (IOException ex) {
+            Logger.getLogger(PrincipalBiblioTech.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PrincipalBiblioTech.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_listdatActionPerformed
 
     private void btn_prestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prestamosActionPerformed
-       this.setVisible(false);
+        this.setVisible(false);
+        PrestamosDeMaterial prestMater = new PrestamosDeMaterial();
+        prestMater.setVisible(true);
     }//GEN-LAST:event_btn_prestamosActionPerformed
 
     /**
@@ -144,8 +173,9 @@ public class PrincipalBiblioTech extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_listdat;
     private javax.swing.JButton btn_prestamos;
     private javax.swing.JButton btn_regMat;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_regStud;
     // End of variables declaration//GEN-END:variables
 }
